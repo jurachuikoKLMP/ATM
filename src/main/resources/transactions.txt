@@ -1,0 +1,1 @@
+id from_card to_card cash currency_id transaction_time

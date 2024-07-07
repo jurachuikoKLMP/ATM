@@ -4,22 +4,35 @@ import com.senlainc.service.FileService;
 import lombok.SneakyThrows;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileServiceImpl implements FileService {
     @Override
     @SneakyThrows
-    public String readFromFile(String filePath){
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
-        StringBuffer json = new StringBuffer();
+    public List<String> readFromFile(String filePath){
+        File file = new File(filePath);
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
+
+        List<String> lines = new ArrayList<>();
         String line;
 
-        while ((line = bufferedReader.readLine()) != null)
-            json.append(line);
+        int k = 0;
 
-        return json.toString();
+        while((line = br.readLine()) != null) {
+            if(k == 0){
+                ++k;
+                continue;
+            }
+
+            lines.add(line);
+        }
+
+        return lines;
     }
 
     @Override

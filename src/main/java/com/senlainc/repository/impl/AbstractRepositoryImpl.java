@@ -16,10 +16,20 @@ public abstract class AbstractRepositoryImpl<T extends Entity> implements Abstra
     protected String filePath;
     protected FileService fileService;
 
-    public AbstractRepositoryImpl(String filePath){
+    @SneakyThrows
+    public AbstractRepositoryImpl(Class<? extends T> clazz, String filePath){
         this.filePath = filePath;
         this.fileService = new FileServiceImpl();
-        this.storage = new HashMap<>();//todo deserialize
+
+        this.storage = new HashMap<>();
+
+        for(String obj : fileService.readFromFile(filePath)){
+            T entity = clazz.newInstance();
+
+            entity.parseFieldsFromStringValue(obj);
+
+            this.storage.put(entity.getId(), entity);
+        }
     }
 
     @Override

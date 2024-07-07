@@ -48,7 +48,7 @@ public class ExitServiceImpl implements ExitService {
         
         StringBuilder accountData = new StringBuilder();
 
-        accountData.append("HEADER\n");
+        accountData.append(StringConstant.ACCOUNT_DATABASE_HEADER);
         
         for(Map.Entry<Long, Account> account : accounts.entrySet())
             accountData.append(account.getValue().toString()).append("\n");
@@ -61,6 +61,8 @@ public class ExitServiceImpl implements ExitService {
 
         StringBuilder cardsData = new StringBuilder();
 
+        cardsData.append(StringConstant.CARD_DATABASE_HEADER);
+
         for(Map.Entry<Long, Card> card : cards.entrySet())
             cardsData.append(card.getValue().toString()).append("\n");
 
@@ -72,6 +74,8 @@ public class ExitServiceImpl implements ExitService {
 
         StringBuilder currencyData = new StringBuilder();
 
+        currencyData.append(StringConstant.CURRENCY_DATABASE_HEADER);
+
         for(Map.Entry<Long, Currency> currency : currencies.entrySet())
             currencyData.append(currency.getValue().toString()).append("\n");
 
@@ -82,6 +86,8 @@ public class ExitServiceImpl implements ExitService {
         Map<Long, Transaction> transactions = transactionRepository.getStorage();
 
         StringBuilder transactionData = new StringBuilder();
+
+        transactionData.append(StringConstant.TRANSACTION_DATABASE_HEADER);
 
         for(Map.Entry<Long, Transaction> transaction : transactions.entrySet())
             transactionData.append(transaction.getValue().toString()).append("\n");

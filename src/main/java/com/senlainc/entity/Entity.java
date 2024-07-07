@@ -6,6 +6,8 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Entity {
-    private long id;
+public abstract class Entity {
+    protected long id;
+
+    public abstract void parseFieldsFromStringValue(String string);
 }

@@ -1,0 +1,1 @@
+java -jar target/ATM-1.0-SNAPSHOT.jar

@@ -1,8 +1,8 @@
 package com.senlainc.service;
 
-import java.util.Map;
+import java.util.List;
 
 public interface FileService {
-    String readFromFile(String filePath);
+    List<String> readFromFile(String filePath);
     void rewriteFile(String filePath, String data);
 }

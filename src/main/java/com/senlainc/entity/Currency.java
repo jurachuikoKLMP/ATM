@@ -18,6 +18,29 @@ public class Currency extends Entity{
 
     @Override
     public String toString(){
-        return String.format("%s %s %s %s", getId(), currencyType.toString(), symbol, coefficient);
+        StringBuilder currencyData = new StringBuilder();
+        currencyData.append(getId()).append(" ")
+                .append(currencyType.toString()).append(" ")
+                .append(symbol).append(" ")
+                .append(coefficient.toString()).append(" ");
+
+        return currencyData.toString();
+    }
+
+    @Override
+    public void parseFieldsFromStringValue(String string) {
+        String[] values = string.trim().split(" ");
+
+        this.id = Long.valueOf(values[0]);
+
+        switch (values[1]){
+            case "BYN" -> this.currencyType = CurrencyType.BYN;
+            case "USD" -> this.currencyType = CurrencyType.USD;
+            case "EUR" -> this.currencyType = CurrencyType.EUR;
+            case "RUB" -> this.currencyType = CurrencyType.RUB;
+        }
+
+        this.symbol = values[2].charAt(0);
+        this.coefficient = new BigDecimal(values[3]);
     }
 }

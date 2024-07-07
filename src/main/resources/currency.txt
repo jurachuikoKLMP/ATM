@@ -1,0 +1,5 @@
+id currency_type symbol coefficient
+1 BYN р 1 
+2 USD $ 0.3114 
+3 EUR Э 0.2884 
+4 RUB р 27.4386 

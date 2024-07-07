@@ -9,7 +9,7 @@ public class AccountRepositoryImpl extends AbstractRepositoryImpl<Account> imple
     private static AccountRepositoryImpl accountRepository;
 
     private AccountRepositoryImpl() {
-        super(StringConstant.ACCOUNTS_FILE_PATH);
+        super(Account.class, StringConstant.ACCOUNTS_FILE_PATH);
     }
 
     public static AccountRepositoryImpl newInstance(){

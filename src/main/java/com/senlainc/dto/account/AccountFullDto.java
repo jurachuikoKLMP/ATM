@@ -21,4 +21,17 @@ public class AccountFullDto {
     private CurrencyDto currency;
     private CardDto card;
     private List<TransactionDto> transactions;
+
+    @Override
+    public String toString(){
+        return String.format("""
+            uuid: %s
+            name: %s
+            surname: %s
+            balance: %s
+            currency: %s
+            card number: %s
+            """, uuid, name, surname, balance.toString(), currency.getSymbol(), card.getCardNumber()
+        );
+    }
 }

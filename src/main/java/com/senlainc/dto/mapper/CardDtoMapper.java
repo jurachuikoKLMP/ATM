@@ -11,7 +11,7 @@ public class CardDtoMapper {
         return CardDto.builder()
                 .cardNumber(source.getCardNumber())
                 .duration(source.getDuration())
-                .commision(source.getCommision())
+                .commision(source.getCommission())
                 .build();
     }
 }

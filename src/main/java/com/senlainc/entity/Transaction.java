@@ -1,5 +1,6 @@
 package com.senlainc.entity;
 
+import com.senlainc.repository.impl.CurrencyRepositoryImpl;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,13 +24,29 @@ public class Transaction extends Entity{
 
     @Override
     public String toString(){
-        StringBuilder transactionData = new StringBuilder(String.format("%s %s %s %s %s ", getId(), fromCard, toCard, cash, transactionTime));
+        StringBuilder transactionData = new StringBuilder();
+        transactionData.append(getId()).append(" ")
+                .append(fromCard).append(" ")
+                .append(toCard).append(" ")
+                .append(cash).append(" ")
+                .append("%s").append(" ")
+                .append(transactionTime.toString()).append(" ");
 
-        if(currency == null)
-            transactionData.append("null").append(" ");
+        if(this.currency == null)
+            return String.format(transactionData.toString(), "null");
         else
-            transactionData.append(currency.getId()).append(" ");
+            return String.format(transactionData.toString(), currency.getId());
+    }
 
-        return transactionData.toString();
+    @Override
+    public void parseFieldsFromStringValue(String string) {
+        String[] values = string.trim().split(" ");
+
+        this.id = Long.valueOf(values[0]);
+        this.fromCard = values[1];
+        this.toCard = values[2];
+        this.cash = new BigDecimal(values[3]);
+        this.currency = CurrencyRepositoryImpl.newInstance().findById(Long.valueOf(values[4]));
+        this.transactionTime = Date.valueOf(values[5]);
     }
 }

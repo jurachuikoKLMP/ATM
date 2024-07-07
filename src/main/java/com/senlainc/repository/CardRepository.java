@@ -12,4 +12,5 @@ public interface CardRepository {
     Card save(Card entity);
     void deleteById(Long id);
     Map<Long, Card> getStorage();
+    Card findByCardNumber(String cardnumber);
 }

@@ -17,4 +17,14 @@ public class TransactionDto {
     private BigDecimal cash;
     private Currency currency;
     private Date transactionTime;
+
+    @Override
+    public String toString(){
+        return String.format("""
+from: %s
+to: %s
+cash: %s %s
+date: %s
+                """, fromCard, toCard, cash, currency.getSymbol(), transactionTime.toString());
+    }
 }

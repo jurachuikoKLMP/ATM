@@ -8,7 +8,7 @@ public class CurrencyRepositoryImpl extends AbstractRepositoryImpl<Currency> imp
     private static CurrencyRepositoryImpl currencyRepository;
 
     private CurrencyRepositoryImpl() {
-        super(StringConstant.CURRENCY_FILE_PATH);
+        super(Currency.class, StringConstant.CURRENCY_FILE_PATH);
     }
 
     public static CurrencyRepositoryImpl newInstance(){
